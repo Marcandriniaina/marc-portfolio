@@ -29,11 +29,17 @@ export function Header() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="font-mono text-sm font-semibold tracking-tight" onClick={() => setOpen(false)}>
-          <span className="text-accent">&lt;</span>marc<span className="text-accent">.dev /&gt;</span>
+        <a
+          href="#top"
+          className="font-mono text-xs font-semibold tracking-tight whitespace-nowrap sm:text-sm"
+          onClick={() => setOpen(false)}
+        >
+          <span className="text-accent">&lt;</span>
+          {tr(t.ui.logo)}
+          <span className="text-accent"> /&gt;</span>
         </a>
 
-        <ul className="hidden items-center gap-7 text-sm text-muted md:flex">
+        <ul className="hidden items-center gap-7 text-sm text-muted lg:flex">
           {links.map((id) => (
             <li key={id}>
               <a href={`#${id}`} className="transition hover:text-fg">
@@ -59,7 +65,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className={`${iconBtn} md:hidden`}
+            className={`${iconBtn} lg:hidden`}
             aria-label={tr(t.ui.menu)}
             aria-expanded={open}
           >
@@ -69,7 +75,7 @@ export function Header() {
       </nav>
 
       {open && (
-        <ul className="border-t border-line px-4 py-3 md:hidden">
+        <ul className="border-t border-line px-4 py-3 lg:hidden">
           {links.map((id) => (
             <li key={id}>
               <a

@@ -402,6 +402,7 @@ export const t = {
     top: { fr: "Haut de page", en: "Back to top" },
   },
   ui: {
+    logo: { fr: "Ingénieur en informatique", en: "Computer Engineer" },
     theme: { fr: "Changer de thème", en: "Toggle theme" },
     lang: { fr: "Switch to English", en: "Passer en français" },
     menu: { fr: "Menu", en: "Menu" },
