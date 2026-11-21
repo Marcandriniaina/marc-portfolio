@@ -9,7 +9,7 @@ type Ctx = {
   lang: Lang;
   setLang: (l: Lang) => void;
   theme: Theme;
-  toggleTheme: () => void;
+  setTheme: (t: Theme) => void;
   /** Renvoie la traduction dans la langue active */
   tr: <T>(value: Record<Lang, T>) => T;
 };
@@ -24,14 +24,14 @@ function save(key: string, value: string) {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("fr");
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("dark");
 
   // Le script d'initialisation a déjà posé les préférences sur <html> : on les relit
   useEffect(() => {
     const root = document.documentElement;
     /* eslint-disable react-hooks/set-state-in-effect */
     if (root.lang === "en") setLangState("en");
-    if (root.dataset.theme === "light") setTheme("light");
+    if (root.dataset.theme === "light") setThemeState("light");
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
@@ -41,19 +41,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
     save("lang", l);
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      document.documentElement.dataset.theme = next;
-      save("theme", next);
-      return next;
-    });
+  const setTheme = useCallback((next: Theme) => {
+    setThemeState(next);
+    document.documentElement.dataset.theme = next;
+    save("theme", next);
   }, []);
 
   const tr = useCallback(<T,>(value: Record<Lang, T>) => value[lang], [lang]);
 
   return (
-    <AppContext.Provider value={{ lang, setLang, theme, toggleTheme, tr }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ lang, setLang, theme, setTheme, tr }}>{children}</AppContext.Provider>
   );
 }
 

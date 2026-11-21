@@ -8,7 +8,7 @@ import { Close, Menu, Monitor, Moon, Sun } from "./Icons";
 const links = ["about", "projects", "experience", "skills", "contact"] as const;
 
 export function Header() {
-  const { tr, lang, setLang, theme, toggleTheme } = useApp();
+  const { tr, lang, setLang, theme, setTheme } = useApp();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<(typeof links)[number] | null>(null);
@@ -94,18 +94,26 @@ export function Header() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
-            className={`${iconBtn} font-mono text-xs`}
-            aria-label={tr(t.ui.lang)}
-            title={tr(t.ui.lang)}
-          >
-            {lang === "fr" ? "EN" : "FR"}
-          </button>
-          <button type="button" onClick={toggleTheme} className={iconBtn} aria-label={tr(t.ui.theme)} title={tr(t.ui.theme)}>
-            {theme === "dark" ? <Sun width={16} height={16} /> : <Moon width={16} height={16} />}
-          </button>
+          <div className="hidden items-center gap-2 sm:flex">
+            <Segmented
+              label={tr(t.ui.langLabel)}
+              value={lang}
+              onChange={setLang}
+              options={[
+                { value: "fr", label: "FR", title: "Français" },
+                { value: "en", label: "EN", title: "English" },
+              ]}
+            />
+            <Segmented
+              label={tr(t.ui.theme)}
+              value={theme}
+              onChange={setTheme}
+              options={[
+                { value: "light", label: <Sun width={15} height={15} />, title: tr(t.ui.light) },
+                { value: "dark", label: <Moon width={15} height={15} />, title: tr(t.ui.dark) },
+              ]}
+            />
+          </div>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
@@ -136,8 +144,86 @@ export function Header() {
               </a>
             </li>
           ))}
+          {/* Sur téléphone, langue et thème sont ici (pas assez de place dans l'en-tête) */}
+          <li className="mt-3 grid gap-3 border-t border-line pt-4 sm:hidden">
+            <div className="flex items-center justify-between px-3">
+              <span className="text-sm text-muted">{tr(t.ui.langLabel)}</span>
+              <Segmented
+                label={tr(t.ui.langLabel)}
+                value={lang}
+                onChange={setLang}
+                options={[
+                  { value: "fr", label: "Français" },
+                  { value: "en", label: "English" },
+                ]}
+              />
+            </div>
+            <div className="flex items-center justify-between px-3">
+              <span className="text-sm text-muted">{tr(t.ui.theme)}</span>
+              <Segmented
+                label={tr(t.ui.theme)}
+                value={theme}
+                onChange={setTheme}
+                options={[
+                  {
+                    value: "light",
+                    label: (
+                      <>
+                        <Sun width={14} height={14} /> {tr(t.ui.light)}
+                      </>
+                    ),
+                  },
+                  {
+                    value: "dark",
+                    label: (
+                      <>
+                        <Moon width={14} height={14} /> {tr(t.ui.dark)}
+                      </>
+                    ),
+                  },
+                ]}
+              />
+            </div>
+          </li>
         </ul>
       )}
     </header>
+  );
+}
+
+/** Sélecteur à deux positions : l'option choisie est surlignée. */
+function Segmented<V extends string>({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: V;
+  onChange: (v: V) => void;
+  options: { value: V; label: React.ReactNode; title?: string }[];
+}) {
+  return (
+    <div role="radiogroup" aria-label={label} className="inline-flex items-center rounded-full border border-line bg-surface/70 p-0.5">
+      {options.map((o) => {
+        const selected = o.value === value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            role="radio"
+            aria-checked={selected}
+            title={o.title}
+            aria-label={o.title}
+            onClick={() => onChange(o.value)}
+            className={`inline-flex h-8 min-w-9 items-center justify-center gap-1.5 rounded-full px-2.5 font-mono text-xs font-semibold transition ${
+              selected ? "bg-accent text-accent-ink shadow-sm" : "text-muted hover:text-fg"
+            }`}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
   );
 }

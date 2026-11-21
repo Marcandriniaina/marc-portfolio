@@ -405,8 +405,10 @@ export const t = {
   },
   ui: {
     logo: { fr: "Ingénieur en informatique", en: "Computer Engineer" },
-    theme: { fr: "Changer de thème", en: "Toggle theme" },
-    lang: { fr: "Switch to English", en: "Passer en français" },
+    theme: { fr: "Thème", en: "Theme" },
+    light: { fr: "Clair", en: "Light" },
+    dark: { fr: "Sombre", en: "Dark" },
+    langLabel: { fr: "Langue", en: "Language" },
     menu: { fr: "Menu", en: "Menu" },
   },
 };
