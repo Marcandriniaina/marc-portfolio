@@ -32,6 +32,20 @@ function Visual({ p, onExpand }: { p: Project; onExpand: () => void }) {
     );
   }
 
+  if (p.logo) {
+    return (
+      <div className="flex h-full items-center justify-center bg-white p-6">
+        <Image
+          src={p.logo}
+          alt={`${p.name}, logo`}
+          width={223}
+          height={226}
+          className="h-full max-h-[150px] w-auto object-contain transition duration-500 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
   if (!p.image) {
     return (
       <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-2 bg-surface-2 text-faint">

@@ -27,7 +27,7 @@ Les images optimisées sont dans `public/images/`. Pour en ajouter ou en remplac
 2. Ajoute-la dans [`scripts/prepare-images.mjs`](scripts/prepare-images.mjs).
 3. Lance `node scripts/prepare-images.mjs ..`.
 
-Le projet **DRSP** n'a pas encore de capture : ajoute `public/images/drsp-cover.webp` puis renseigne `image: "/images/drsp-cover.webp"` dans `content.ts`.
+Le projet **DRSP** est une application locale (non déployée) : sa carte affiche le logo du ministère de la Santé (`logo` dans `content.ts`) au lieu d'une capture.
 
 Le CV téléchargeable est `public/cv-marc-floris-andriniaina.pdf`. Remplace ce fichier quand ton CV change.
 

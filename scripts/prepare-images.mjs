@@ -51,6 +51,10 @@ await sharp(src("ATE-connect.jpg"))
   .toFile(out("ate-connect.webp"));
 console.log("ok ate");
 
+// DRSP : application locale, on affiche le logo du ministère de la Santé (petit, pas d'agrandissement)
+await sharp(src("drsp.jpg")).webp({ quality: 95 }).toFile(out("drsp-logo.webp"));
+console.log("ok drsp");
+
 // Remplace le fond gris uni de la photo par le bleu-violet du CV.
 // Seul le fond relié aux bords est modifié (la chemise blanche ou les ombres du
 // costume ne bougent pas), et les pixels de contour sont « démélangés » pour

@@ -31,6 +31,8 @@ export type Project = {
   tech: string[];
   url?: string;
   image?: string;
+  /** Logo affiché centré sur fond blanc (pour un projet sans capture d'écran) */
+  logo?: string;
   fullImage?: string;
   mobile?: boolean;
   featured?: boolean;
@@ -186,7 +188,7 @@ export const projects: Project[] = [
     name: "DRSP Atsimo-Andrefana",
     kind: { fr: "Parc informatique", en: "IT asset management" },
     platforms: { fr: "Application web", en: "Web application" },
-    context: { fr: "Stage · 2022", en: "Internship · 2022" },
+    context: { fr: "Stage · 2022 · application locale", en: "Internship · 2022 · local app" },
     role: {
       fr: "Conception et développement de l’application",
       en: "Design and development of the application",
@@ -197,6 +199,7 @@ export const projects: Project[] = [
     },
     highlights: { fr: [], en: [] },
     tech: ["PHP"],
+    logo: "/images/drsp-logo.webp",
   },
 ];
 
