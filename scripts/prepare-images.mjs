@@ -118,5 +118,6 @@ await sharp(await recolored.png().toBuffer())
   .resize(800)
   .sharpen({ sigma: 0.6 })
   .webp({ quality: 92 })
-  .toFile(out("profile.webp"));
+  // Importée dans le code : Next.js ajoute une empreinte au nom, donc aucun cache ne garde l'ancienne
+  .toFile(path.resolve("src/assets/profile.webp"));
 console.log("ok profile");

@@ -1,6 +1,8 @@
 // Tout le contenu du portfolio, en français et en anglais.
 // Pour modifier un texte, c'est ici et nulle part ailleurs.
 
+import profilePhoto from "@/assets/profile.webp";
+
 export type Lang = "fr" | "en";
 
 export const profile = {
@@ -13,7 +15,7 @@ export const profile = {
   // Ajoute ton lien GitHub ici, il apparaîtra automatiquement dans le site
   github: "",
   cv: "/cv-marc-floris-andriniaina.pdf",
-  photo: "/images/profile.webp",
+  photo: profilePhoto,
   stack: ["React", "React Native", "Next.js", "Node.js", "NestJS", "PostgreSQL"],
 };
 
