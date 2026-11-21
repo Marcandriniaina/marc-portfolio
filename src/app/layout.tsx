@@ -8,7 +8,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 const description =
-  "Développeur Fullstack JavaScript (Web & Mobile) : React, React Native, Next.js, NestJS, PostgreSQL. Freelance, basé à Toliara, Madagascar.";
+  "Développeur Fullstack JavaScript (Web & Mobile) : React, React Native, Next.js, NestJS, PostgreSQL. Freelance, basé à Antananarivo, Madagascar.";
 
 // Sur Vercel, l'URL de production est fournie automatiquement
 const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL

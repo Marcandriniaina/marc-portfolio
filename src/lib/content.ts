@@ -326,7 +326,7 @@ export const t = {
     ctaProjects: { fr: "Voir mes projets", en: "See my work" },
     ctaCv: { fr: "Télécharger le CV", en: "Download CV" },
     ctaContact: { fr: "Me contacter", en: "Contact me" },
-    location: { fr: "Toliara, Madagascar · disponible à distance", en: "Toliara, Madagascar · available remotely" },
+    location: { fr: "Antananarivo, Madagascar · disponible à distance", en: "Antananarivo, Madagascar · available remotely" },
   },
   stats: [
     { value: "3", label: { fr: "plateformes en production", en: "platforms in production" } },
@@ -346,7 +346,7 @@ export const t = {
     },
     facts: {
       location: { fr: "Localisation", en: "Location" },
-      locationValue: { fr: "Toliara (Tuléar), Madagascar", en: "Toliara (Tuléar), Madagascar" },
+      locationValue: { fr: "Antananarivo, Madagascar", en: "Antananarivo, Madagascar" },
       birth: { fr: "Date de naissance", en: "Date of birth" },
       birthValue: { fr: "7 janvier 2001", en: "January 7, 2001" },
       languages: { fr: "Langues", en: "Languages" },
