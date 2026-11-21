@@ -11,12 +11,37 @@ export function Header() {
   const { tr, lang, setLang, theme, toggleTheme } = useApp();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<(typeof links)[number] | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 12);
+
+      // Section active : la dernière dont le haut a dépassé le tiers supérieur de l'écran.
+      // En bas de page, c'est toujours la dernière (Contact, trop courte pour monter jusque-là).
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      let current: (typeof links)[number] | null = null;
+      if (atBottom) current = links[links.length - 1];
+      else
+        for (const id of links) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.35) current = id;
+        }
+      setActive(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   const iconBtn =
@@ -43,14 +68,29 @@ export function Header() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-7 text-sm text-muted lg:flex">
-          {links.map((id) => (
-            <li key={id}>
-              <a href={`#${id}`} className="transition hover:text-fg">
-                {tr(t.nav[id])}
-              </a>
-            </li>
-          ))}
+        <ul className="hidden items-center gap-1 text-sm lg:flex">
+          {links.map((id) => {
+            const isActive = active === id;
+            return (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`relative block rounded-full px-3.5 py-1.5 transition ${
+                    isActive ? "bg-accent/12 font-medium text-fg" : "text-muted hover:text-fg"
+                  }`}
+                >
+                  {tr(t.nav[id])}
+                  <span
+                    className={`absolute inset-x-3.5 -bottom-[13px] h-0.5 rounded-full bg-accent transition-opacity ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    }`}
+                    aria-hidden
+                  />
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
@@ -85,7 +125,12 @@ export function Header() {
               <a
                 href={`#${id}`}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-3 py-3 text-muted transition hover:bg-surface hover:text-fg"
+                aria-current={active === id ? "location" : undefined}
+                className={`block rounded-lg border-l-2 px-3 py-3 transition ${
+                  active === id
+                    ? "border-accent bg-accent/12 font-medium text-fg"
+                    : "border-transparent text-muted hover:bg-surface hover:text-fg"
+                }`}
               >
                 {tr(t.nav[id])}
               </a>
