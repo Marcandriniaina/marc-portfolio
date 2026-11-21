@@ -155,6 +155,7 @@ export const projects: Project[] = [
       ],
     },
     tech: ["Next.js"],
+    url: "https://stage-costm.vercel.app/",
     image: "/images/costm-cover.webp",
     fullImage: "/images/costm-full.webp",
   },
@@ -177,6 +178,7 @@ export const projects: Project[] = [
       en: ["Teacher assignment tracking", "User accounts and authentication"],
     },
     tech: ["React"],
+    url: "https://aff-oi1o.onrender.com/",
     image: "/images/dren-cover.webp",
   },
   {

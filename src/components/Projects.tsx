@@ -140,8 +140,19 @@ function SmallCard({ p, delay, onExpand }: { p: Project; delay: number; onExpand
           <p className="text-sm text-muted">{tr(p.kind)}</p>
         </div>
         <p className="text-sm text-pretty text-muted">{tr(p.description)}</p>
-        <div className="mt-auto pt-2">
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-3 pt-2">
           <TechList items={p.tech} />
+          {p.url && (
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+            >
+              {tr(t.projects.visit)}
+              <ArrowUpRight width={16} height={16} />
+            </a>
+          )}
         </div>
       </div>
     </Reveal>
