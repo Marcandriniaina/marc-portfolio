@@ -24,8 +24,8 @@ function Visual({ p, onExpand }: { p: Project; onExpand: () => void }) {
 
   if (p.mobile && p.image) {
     return (
-      <div className="relative flex h-full min-h-[300px] items-end justify-center overflow-hidden bg-gradient-to-br from-[#2a1416] via-surface-2 to-surface px-6 pt-8">
-        <div className="relative w-[230px] translate-y-6 overflow-hidden rounded-t-[2rem] border-[6px] border-b-0 border-[#1c1f26] shadow-2xl transition duration-500 group-hover:translate-y-3">
+      <div className="relative flex h-full items-end justify-center overflow-hidden bg-gradient-to-br from-[#2a1416] via-surface-2 to-surface px-6 pt-8">
+        <div className="relative w-[190px] translate-y-6 sm:w-[230px] overflow-hidden rounded-t-[2rem] border-[6px] border-b-0 border-[#1c1f26] shadow-2xl transition duration-500 group-hover:translate-y-3">
           <Image src={p.image} alt={`${p.name}, fiche Google Play`} width={719} height={1225} className="h-auto w-full" />
         </div>
       </div>
@@ -86,9 +86,14 @@ function FeaturedCard({ p, index, onExpand }: { p: Project; index: number; onExp
   return (
     <Reveal
       as="article"
-      className="group grid overflow-hidden rounded-3xl border border-line bg-surface transition hover:border-accent/50 lg:grid-cols-2"
+      // minmax(0,1fr) : la colonne ne peut jamais dépasser la largeur de la carte
+      className="group grid grid-cols-[minmax(0,1fr)] overflow-hidden rounded-3xl border border-line bg-surface transition hover:border-accent/50 lg:grid-cols-2"
     >
-      <div className={`aspect-[16/10] lg:aspect-auto lg:min-h-[420px] ${reversed ? "lg:order-2" : ""}`}>
+      <div
+        className={`${p.mobile ? "h-[340px] sm:h-[420px]" : "aspect-[16/10]"} lg:aspect-auto lg:h-auto lg:min-h-[420px] ${
+          reversed ? "lg:order-2" : ""
+        }`}
+      >
         <Visual p={p} onExpand={() => onExpand(p)} />
       </div>
       <div className="flex flex-col gap-5 p-6 sm:p-8">
