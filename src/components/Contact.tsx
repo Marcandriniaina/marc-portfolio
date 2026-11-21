@@ -85,13 +85,27 @@ export function Contact() {
               <CopyButton value={profile.phones[0]} />
             </div>
             <ul className="space-y-1">
-              {profile.phones.map((ph) => (
-                <li key={ph}>
-                  <a href={`tel:${ph.replace(/\s/g, "")}`} className="hover:text-accent">
-                    {ph}
-                  </a>
-                </li>
-              ))}
+              {profile.phones.map((ph) => {
+                const isWhatsApp = ph.replace(/\D/g, "") === profile.whatsapp;
+                return (
+                  <li key={ph} className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                    <a href={`tel:${ph.replace(/\s/g, "")}`} className="hover:text-accent">
+                      {ph}
+                    </a>
+                    {isWhatsApp && (
+                      <a
+                        href={`https://wa.me/${profile.whatsapp}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-medium text-emerald-500 hover:bg-emerald-500/25"
+                      >
+                        <WhatsApp width={12} height={12} />
+                        WhatsApp
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Reveal>

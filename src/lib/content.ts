@@ -10,7 +10,7 @@ export const profile = {
   firstName: "Marc",
   email: "marcandriniaina9@gmail.com",
   phones: ["+261 34 05 592 64", "+261 32 41 367 71"],
-  whatsapp: "261340559264",
+  whatsapp: "261324136771", // 032 41 367 71
   linkedin: "https://www.linkedin.com/in/marc-andriniaina-53126826b",
   // Ajoute ton lien GitHub ici, il apparaîtra automatiquement dans le site
   github: "",
