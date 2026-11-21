@@ -86,6 +86,12 @@ export const Check = (p: P) => (
     <path d="m5 12 5 5 9-10" />
   </svg>
 );
+export const Monitor = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="3" y="4" width="18" height="12" rx="2" />
+    <path d="M8 20h8M12 16v4" />
+  </svg>
+);
 export const Code = (p: P) => (
   <svg {...base} {...p}>
     <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" />

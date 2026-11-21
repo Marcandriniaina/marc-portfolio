@@ -5,6 +5,9 @@
       <stop offset="1" stop-color="#4dd4e6"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#0a0d14"/>
-  <text x="32" y="42" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="28" font-weight="700" fill="url(#g)">MA</text>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <g fill="none" stroke="#0a0d14" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="13" y="15" width="38" height="25" rx="4"/>
+    <path d="M24 49h16M32 40v9"/>
+  </g>
 </svg>

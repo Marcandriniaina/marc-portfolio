@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useApp } from "./Providers";
 import { t } from "@/lib/content";
-import { Close, Menu, Moon, Sun } from "./Icons";
+import { Close, Menu, Monitor, Moon, Sun } from "./Icons";
 
 const links = ["about", "projects", "experience", "skills", "contact"] as const;
 
@@ -29,14 +29,18 @@ export function Header() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a
-          href="#top"
-          className="font-mono text-xs font-semibold tracking-tight whitespace-nowrap sm:text-sm"
-          onClick={() => setOpen(false)}
-        >
-          <span className="text-accent">&lt;</span>
-          {tr(t.ui.logo)}
-          <span className="text-accent"> /&gt;</span>
+        <a href="#top" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <span
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[#0a0d14] shadow-lg transition group-hover:scale-105"
+            style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-2))" }}
+            aria-hidden
+          >
+            <Monitor width={19} height={19} strokeWidth={2.2} />
+          </span>
+          <span className="leading-tight whitespace-nowrap">
+            <span className="block text-sm font-semibold tracking-tight">Marc Andriniaina</span>
+            <span className="block text-[11px] text-muted">{tr(t.ui.logo)}</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-7 text-sm text-muted lg:flex">
