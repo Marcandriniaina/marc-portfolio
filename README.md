@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio · Marc Floris Andriniaina
 
-## Getting Started
+Portfolio personnel bilingue (FR/EN), thème sombre et clair, construit avec **Next.js 16**, **React 19** et **Tailwind CSS 4**.
 
-First, run the development server:
+## Lancer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puis ouvrir http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Modifier le contenu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tous les textes (FR et EN) sont dans un seul fichier : [`src/lib/content.ts`](src/lib/content.ts).
 
-## Learn More
+- **Coordonnées et liens** : objet `profile`. Ajoute ton lien GitHub dans `github` : l'icône apparaîtra automatiquement.
+- **Projets** : tableau `projects`. `featured: true` affiche le projet en grand ; `url` ajoute un bouton « Voir le site ».
+- **Expériences, formation, compétences** : `experiences`, `education`, `skills`.
 
-To learn more about Next.js, take a look at the following resources:
+## Images
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Les images optimisées sont dans `public/images/`. Pour en ajouter ou en remplacer une :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Place la capture brute dans le dossier parent (`Downloads/Portfolio`).
+2. Ajoute-la dans [`scripts/prepare-images.mjs`](scripts/prepare-images.mjs).
+3. Lance `node scripts/prepare-images.mjs ..`.
 
-## Deploy on Vercel
+Le projet **DRSP** n'a pas encore de capture : ajoute `public/images/drsp-cover.webp` puis renseigne `image: "/images/drsp-cover.webp"` dans `content.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le CV téléchargeable est `public/cv-marc-floris-andriniaina.pdf`. Remplace ce fichier quand ton CV change.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Mettre en ligne (gratuit, avec Vercel)
+
+1. Crée un dépôt sur GitHub et pousse le projet :
+   ```bash
+   git add -A
+   git commit -m "Portfolio"
+   git branch -M main
+   git remote add origin https://github.com/<ton-compte>/portfolio.git
+   git push -u origin main
+   ```
+2. Va sur https://vercel.com, connecte-toi avec GitHub, clique sur **Add New → Project** et importe le dépôt.
+3. Laisse les réglages par défaut et clique sur **Deploy**. Ton site sera en ligne sur `https://<nom>.vercel.app`.
+
+Chaque `git push` redéploie ensuite le site automatiquement.
