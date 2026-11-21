@@ -112,8 +112,10 @@ export function Hero() {
               <Image
                 src={profile.photo}
                 alt={profile.name}
-                width={360}
-                height={360}
+                width={800}
+                height={800}
+                sizes="(min-width: 1024px) 360px, 340px"
+                quality={90}
                 preload
                 className="h-full w-full rounded-full object-cover"
               />

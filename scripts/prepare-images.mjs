@@ -51,12 +51,13 @@ await sharp(src("ATE-connect.jpg"))
   .toFile(out("ate-connect.webp"));
 console.log("ok ate");
 
-// Photo de profil, extraite du CV (image pleine page à 2382 px de large)
-const cvPage = process.argv[3];
-if (cvPage) {
-  await sharp(cvPage)
-    .extract({ left: 228, top: 164, width: 360, height: 360 })
-    .webp({ quality: 90 })
-    .toFile(out("profile.webp"));
-  console.log("ok profile");
-}
+// Photo de profil (image-marc.jpg, 1663 × 1604) : recadrage carré visage + épaules,
+// exportée en 800 px pour rester nette sur les écrans haute densité
+await sharp(src("image-marc.jpg"))
+  .rotate()
+  .extract({ left: 330, top: 360, width: 1000, height: 1000 })
+  .resize(800)
+  .sharpen({ sigma: 0.6 })
+  .webp({ quality: 92 })
+  .toFile(out("profile.webp"));
+console.log("ok profile");
